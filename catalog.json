@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "name": "Fillfolio Skills",
+  "version": "0.1.0",
+  "repository": "https://github.com/fillfolio/portfolio-mcp-skills",
+  "license": "MIT",
+  "mcp": {
+    "endpoint": "https://fillfolio.com/api/mcp",
+    "transport": "streamable-http",
+    "tools": [
+      "open_fillfolio",
+      "get_portfolio_summary",
+      "list_portfolios",
+      "list_holdings",
+      "list_cash_and_liabilities",
+      "list_activity",
+      "get_asset",
+      "get_spending_summary",
+      "list_bank_transactions",
+      "list_budgets"
+    ]
+  },
+  "skills": [
+    {
+      "name": "fillfolio-connect",
+      "title": "Connect or open Fillfolio",
+      "path": "skills/fillfolio-connect",
+      "tools": [
+        "open_fillfolio",
+        "get_portfolio_summary"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-portfolio-overview",
+      "title": "Portfolio overview",
+      "path": "skills/fillfolio-portfolio-overview",
+      "tools": [
+        "get_portfolio_summary",
+        "list_portfolios"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-holdings-allocation",
+      "title": "Holdings allocation",
+      "path": "skills/fillfolio-holdings-allocation",
+      "tools": [
+        "get_portfolio_summary",
+        "list_portfolios",
+        "list_holdings"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-concentration-review",
+      "title": "Concentration review",
+      "path": "skills/fillfolio-concentration-review",
+      "tools": [
+        "get_portfolio_summary",
+        "list_portfolios",
+        "list_holdings",
+        "get_asset"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-asset-review",
+      "title": "Exact asset review",
+      "path": "skills/fillfolio-asset-review",
+      "tools": [
+        "get_portfolio_summary",
+        "list_portfolios",
+        "list_holdings",
+        "get_asset"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-compare-portfolios",
+      "title": "Compare portfolios",
+      "path": "skills/fillfolio-compare-portfolios",
+      "tools": [
+        "get_portfolio_summary",
+        "list_portfolios",
+        "list_holdings"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-cost-basis-review",
+      "title": "Cost basis and current return",
+      "path": "skills/fillfolio-cost-basis-review",
+      "tools": [
+        "get_portfolio_summary",
+        "list_portfolios",
+        "list_holdings"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-cash-debt-review",
+      "title": "Cash and debt",
+      "path": "skills/fillfolio-cash-debt-review",
+      "tools": [
+        "get_portfolio_summary",
+        "list_portfolios",
+        "list_cash_and_liabilities"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-investment-activity",
+      "title": "Investment activity",
+      "path": "skills/fillfolio-investment-activity",
+      "tools": [
+        "list_portfolios",
+        "list_activity",
+        "get_asset"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-spending-overview",
+      "title": "Spending overview",
+      "path": "skills/fillfolio-spending-overview",
+      "tools": [
+        "get_spending_summary",
+        "list_bank_transactions"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-compare-spending",
+      "title": "Compare spending periods",
+      "path": "skills/fillfolio-compare-spending",
+      "tools": [
+        "get_spending_summary",
+        "list_bank_transactions"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-merchant-review",
+      "title": "Merchant transactions",
+      "path": "skills/fillfolio-merchant-review",
+      "tools": [
+        "get_spending_summary",
+        "list_bank_transactions"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-transaction-review",
+      "title": "Transaction review queue",
+      "path": "skills/fillfolio-transaction-review",
+      "tools": [
+        "get_spending_summary",
+        "list_bank_transactions"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-budget-review",
+      "title": "Monthly budgets",
+      "path": "skills/fillfolio-budget-review",
+      "tools": [
+        "get_spending_summary",
+        "list_bank_transactions",
+        "list_budgets"
+      ],
+      "access": "authenticated-mcp"
+    },
+    {
+      "name": "fillfolio-public-connections",
+      "title": "Public connection catalog",
+      "path": "skills/fillfolio-public-connections",
+      "tools": [],
+      "access": "public-http"
+    }
+  ]
+}

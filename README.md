@@ -50,6 +50,10 @@ The workflows preserve reporting currencies, missing valuations, cost-basis cove
 
 Your selected AI service receives the financial records returned to its chat. Opening a dashboard view shares that view's data; Discuss selection shares the selected records. Hide amounts masks the panel only and cannot retract data already shared. Manage or revoke future access in Fillfolio Settings. Keep credentials in the host's OAuth interface.
 
+## Directory submissions
+
+The [submission ledger](docs/directory-submissions.md) tracks directory routes, prerequisites and public outcomes for this library and its [MCP companion](https://github.com/fillfolio/portfolio-mcp). The [AI-related policy report](docs/ai-submission-policies.md) identifies owner-only authorship routes and disclosure requirements.
+
 ## Maintain or extend the library
 
 [`catalog.json`](catalog.json) records the fifteen canonical workflows and their tool dependencies. The [public MCP contract](https://github.com/fillfolio/portfolio-mcp) is maintained separately. Read [CONTRIBUTING.md](CONTRIBUTING.md) before adding a workflow.

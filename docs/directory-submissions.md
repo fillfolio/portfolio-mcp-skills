@@ -6,12 +6,14 @@ This ledger covers the 29 destinations in the original research list. Each row r
 
 ## Results
 
-- **11 open pull requests across 10 destinations.** Maintainer review remains pending.
+- **13 pull requests submitted across 12 destinations.** Maintainer review remains pending.
 - **One free web-form submission** confirmed by mcpservers.org.
 - **One Official MCP Registry update**, metadata version 1.0.1, published and read back.
 - **Three open eligibility/category questions** awaiting maintainers.
 - **Seven deferred destinations** need client acceptance, upstream checks, age or adoption evidence.
-- **Three unavailable manual intake routes**, **two owner-authored AI-restricted routes**, and **two fork creations blocked by GitHub** complete the 29-destination ledger.
+- **Three unavailable manual intake routes** and **two owner-authored AI-restricted routes** complete the 29-destination ledger.
+
+The two earlier GitHub fork rejections cleared after the approved cooldown. Both remaining PRs were verified open in the normal Fillfolio browser session during the 3:00 PM follow-up.
 
 The rows below identify completed submissions and the requirements that still prevent the remaining listings.
 
@@ -39,7 +41,7 @@ The rows below identify completed submissions and the requirements that still pr
 | 10 | [korchasa/awesome-mcp](https://github.com/korchasa/awesome-mcp) | MCP | Unavailable | Automatic discovery with no documented manual submission route. Repository topics and public documentation can aid discovery; indexing is not guaranteed. |
 | 11 | [habitoai/awesome-mcp-servers](https://github.com/habitoai/awesome-mcp-servers) | MCP | Submitted | [PR #256](https://github.com/habitoai/awesome-mcp-servers/pull/256) is open. It adds an alphabetized Finance entry under the [contribution rules](https://github.com/habitoai/awesome-mcp-servers/blob/main/CONTRIBUTING.md). A review follow-up clarifies eligible plans, bank-spending consent and separate permissions. The thread is resolved and commit [758ac4c](https://github.com/habitoai/awesome-mcp-servers/pull/256/commits/758ac4c5aa8acc29e3f9f21d3c4a052cddbd44fd) shows Verified with one successful check. Maintainer review is pending. |
 | 12 | [DhanushNehru/awesome-mcp-servers](https://github.com/DhanushNehru/awesome-mcp-servers) | Both | Awaiting clarification | [Issue #121](https://github.com/DhanushNehru/awesome-mcp-servers/issues/121) asks about adding Finance & Personal Finance before a listing change. The public question is open; it is not listing approval. |
-| 13 | [mctrinh/awesome-mcp-servers](https://github.com/mctrinh/awesome-mcp-servers) | MCP | Blocked by GitHub | GitHub rejected fork creation with “was submitted too quickly,” including the owner’s manual attempt. The reviewed Production-Ready Servers branch and submission text are ready. No fork or PR was created. Retry the [fork route](https://github.com/mctrinh/awesome-mcp-servers/fork) when GitHub permits it, then push the signed branch and submit. |
+| 13 | [mctrinh/awesome-mcp-servers](https://github.com/mctrinh/awesome-mcp-servers) | MCP | Submitted | [PR #172](https://github.com/mctrinh/awesome-mcp-servers/pull/172) is open. The signed branch adds one Production-Ready Servers row and discloses paid account access and the private hosted implementation. The normal fork succeeded after cooldown; maintainer review is pending. |
 
 ## Agent Skills directories
 
@@ -63,7 +65,7 @@ The rows below identify completed submissions and the requirements that still pr
 | # | Destination | Repo | Status | Route, evidence and remaining action |
 | --- | --- | --- | --- | --- |
 | 26 | [cline/mcp-marketplace](https://github.com/cline/mcp-marketplace) | MCP | Deferred | Its [issue form](https://github.com/cline/mcp-marketplace/blob/main/.github/ISSUE_TEMPLATE/mcp-server-submission.yml) requires verified Cline installation and a 400×400 PNG logo. Test an existing accepted configuration before submitting. New production client registrations fall outside this campaign. |
-| 27 | [toolsdk-ai/toolsdk-mcp-registry](https://github.com/toolsdk-ai/toolsdk-mcp-registry) | MCP | Blocked by GitHub | GitHub rejected fork creation with “was submitted too quickly,” including the owner’s manual attempt. The reviewed Finance/Fintech JSON branch, OAuth metadata and PR text are ready. No fork or PR was created. Retry the [fork route](https://github.com/toolsdk-ai/toolsdk-mcp-registry/fork) when GitHub permits it. Contributed MCP packages were not executed. |
+| 27 | [toolsdk-ai/toolsdk-mcp-registry](https://github.com/toolsdk-ai/toolsdk-mcp-registry) | MCP | Submitted | [PR #882](https://github.com/toolsdk-ai/toolsdk-mcp-registry/pull/882) is open. It adds one Finance/Fintech remote-server JSON entry with OAuth metadata and accurate access and licensing disclosures. The trusted validator passes for the submitted file with zero errors and warnings. The normal fork succeeded after cooldown. Contributed MCP packages were not executed; maintainer review is pending. |
 | 28 | [modelcontextprotocol/registry](https://github.com/modelcontextprotocol/registry) | MCP | Published update | [Metadata 1.0.1](https://registry.modelcontextprotocol.io/v0.1/servers/com.fillfolio%2Fmcp/versions/1.0.1) is published under existing name `com.fillfolio/mcp`. Official validation returned valid with no issues; the publish request and public record returned HTTP 200. Companion skills.json remains a proposal, not a submission mechanism. |
 | 29 | [anthropics/skills](https://github.com/anthropics/skills#partner-skills) | Skills | Deferred | After this campaign’s Claude acceptance gate passes, request editorial consideration through a small Partner Skills link contribution. An invitation to consider a link does not establish partnership or acceptance. |
 
@@ -74,6 +76,8 @@ The archived michaellatman/mcp-get repository remains excluded and is outside th
 The linked receipts establish the recorded submissions. An open PR or question still needs a maintainer decision. `Unavailable` describes the manual intake route, not Fillfolio service availability. Owner-only authorship routes remain in the [AI submission policy report](ai-submission-policies.md).
 
 The CI/review snapshot at **13:41 CEST (Europe/Tirane), October 16, 2026** covered nine PRs. Junminhong #77/#78, itgoyo #28, skillmatic #208, BlockRun #119 and FLock #6 had no check-run or commit-status entries in that snapshot; empty results do not prove that CI is disabled. Rohit #852 had a successful CodeRabbit status and no actionable comments. [Punkpeye’s submission checker](https://github.com/punkpeye/awesome-remote-mcp-servers/actions/runs/38895086593/job/116953524649) passed; its welcome job was skipped. TensorBlock’s check-run list was empty, but status/review lookups hit the public API rate limit. Later PRs were outside that snapshot. No unavailable check is reported as a pass. A later browser check found Habitoai #256 passing its one current-head check after the permission-disclosure correction; Ever Works #207 showed no checks, no conflicts and a positive AI review comment with optional notes. Neither is a merge or maintainer acceptance.
+
+The afternoon follow-up verified Mctrinh #172 open with a valid Fillfolio signature and no reported checks or status entries. ToolSDK #882 initially failed Biome because it expected the OAuth scope array on one line. Signed commit [08cfd44](https://github.com/toolsdk-ai/toolsdk-mcp-registry/pull/882/commits/08cfd44d09de295133c9a2101fbbb7fc326c8b3d) changes formatting only; parsed JSON values remain identical. At **15:12 CEST**, its [Biome check](https://github.com/toolsdk-ai/toolsdk-mcp-registry/actions/runs/38906009310/job/116989634822) and [Package Schema Check](https://github.com/toolsdk-ai/toolsdk-mcp-registry/actions/runs/38906009190/job/116989633523) both passed. Both PRs show valid signatures and keep optional maintainer edits disabled. They await maintainer review.
 
 The existing 0.1.0 skill release remains unchanged by this campaign. Client acceptance limits still apply; these directory submissions did not add production OAuth clients or change authentication.
 

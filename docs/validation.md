@@ -33,7 +33,9 @@ The supplied merchant mocks omit record IDs, so the execution disclosed that dup
 
 ## Limits of this evidence
 
-The 0.1.1 extension reuses the fifteen unchanged canonical skills. Its Gemini manifest, context and packaging add no live OAuth acceptance claim. Server activation and Gemini native tests remain pending.
+The 0.1.1 extension reuses the fifteen unchanged canonical skills. We tested the official Gemini CLI 0.64.0 OAuth and MCP components with the synthetic reviewer on October 17, 2026. Ten-tool discovery, portfolio reads and pagination, the four spending/budget permission states, dashboard resource delivery and 662,704 milliseconds of continued access passed on the earlier service release. Those checks did not exercise Gemini model responses or dashboard rendering.
+
+The package remains unreleased. We must complete acceptance on the final service release, including Gemini-only revocation and reconnection, permission restoration and the existing ChatGPT connection control. The earlier Work/Codex control is separate evidence.
 
 These are format, packaging, source-review and synthetic execution results. They do not establish a fresh OAuth acceptance pass for every AI client. The existing ChatGPT Work desktop and Codex connections passed live acceptance before this library. Other client status is documented in [Client setup](client-setup.md).
 

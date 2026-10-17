@@ -1,13 +1,13 @@
 # Validation
 
-Release **0.1.0**, checked October 16, 2026.
+Release candidate **0.1.1**, checked October 17, 2026.
 
 ## Source and packaging
 
 - All 15 skills pass the Skill Creator frontmatter validator.
 - The repository validator checks catalog identity, declared tool dependencies, self-contained skill paths, public links and export boundaries.
-- Six offline packaging tests cover deterministic archives and checksums, standalone ZIP layout, symlink and path rejection, unexpected files, duplicate metadata and credential-shaped literals.
-- Two builds produce identical bytes. Only the reviewed public source set is exported.
+- Eight offline packaging tests cover deterministic archives and checksums, standalone ZIP layout, the Gemini root-manifest ZIP and its single-archive release set, exact OAuth configuration, symlink and path rejection, unexpected files, duplicate metadata and credential-shaped literals.
+- The build creates the existing library and fifteen standalone ZIPs plus a separate Gemini release set. Repeated builds must produce identical bytes. The validator limits exports to the public source set.
 - An independent source review checked all 15 workflows against Fillfolio's current MCP schemas and implementations.
 
 To repeat the repository checks:
@@ -32,6 +32,8 @@ A separate assistant executed the skills with mock tool responses. No live accou
 The supplied merchant mocks omit record IDs, so the execution disclosed that duplicate-ID checking was unavailable. Real tool results include IDs; the skill requires that check.
 
 ## Limits of this evidence
+
+The 0.1.1 extension reuses the fifteen unchanged canonical skills. Its Gemini manifest, context and packaging add no live OAuth acceptance claim. Server activation and Gemini native tests remain pending.
 
 These are format, packaging, source-review and synthetic execution results. They do not establish a fresh OAuth acceptance pass for every AI client. The existing ChatGPT Work desktop and Codex connections passed live acceptance before this library. Other client status is documented in [Client setup](client-setup.md).
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "name": "Fillfolio Skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": "https://github.com/fillfolio/portfolio-mcp-skills",
   "license": "MIT",
   "mcp": {

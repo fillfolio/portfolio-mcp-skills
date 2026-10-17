@@ -10,7 +10,7 @@ import yaml
 TOOLS = frozenset("open_fillfolio get_portfolio_summary list_portfolios list_holdings "
                   "list_cash_and_liabilities list_activity get_asset get_spending_summary "
                   "list_bank_transactions list_budgets".split())
-ROOT_FILES = frozenset("README.md LICENSE CONTRIBUTING.md catalog.json requirements-dev.txt".split())
+ROOT_FILES = frozenset("README.md LICENSE CONTRIBUTING.md catalog.json requirements-dev.txt gemini-extension.json GEMINI.md".split())
 LOCAL = frozenset("AGENTS.md .gitignore .git .codex dist .DS_Store __pycache__ .pytest_cache".split())
 NAME = re.compile(r"fillfolio-[a-z0-9]+(?:-[a-z0-9]+)*\Z")
 TOOL = re.compile(r"\b(?:get|list|open|create|update|delete|set|refresh|connect|search)_[a-z][a-z0-9_]*\b")
@@ -91,6 +91,18 @@ def validate(root):
         require(catalog.get("schemaVersion") == 1 and catalog.get("license") == "MIT", "invalid catalog schema/license")
         require(re.fullmatch(r"\d+\.\d+\.\d+", catalog.get("version", "")), "invalid release version")
         require(catalog.get("repository") == "https://github.com/fillfolio/portfolio-mcp-skills", "unexpected repository")
+        extension = json.loads(files["gemini-extension.json"], object_pairs_hook=unique_mapping)
+        expected_extension = {
+            "name": "fillfolio", "version": catalog["version"], "contextFileName": "GEMINI.md",
+            "mcpServers": {"fillfolio": {
+                "httpUrl": "https://fillfolio.com/api/mcp",
+                "oauth": {"enabled": True, "clientId": "fillfolio-gemini-cli",
+                          "scopes": ["mcp:read"], "redirectUri": "http://localhost:7777/oauth/callback"},
+            }},
+        }
+        require(extension == expected_extension and type(extension["mcpServers"]["fillfolio"]["oauth"]["enabled"]) is bool,
+                "Gemini manifest differs from the accepted OAuth configuration")
+        require(bool(files["GEMINI.md"].strip()), "Gemini context cannot be empty")
         known = catalog.get("mcp", {}).get("tools", [])
         require(isinstance(known, list) and len(known) == len(TOOLS) and set(known) == TOOLS, "unknown or missing MCP tools")
         skills = catalog.get("skills", [])

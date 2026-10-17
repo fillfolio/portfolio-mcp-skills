@@ -16,6 +16,8 @@ Fillfolio has registered identities for ChatGPT, Codex, Claude web, and Claude C
 | ChatGPT | Desktop standalone skills; plugins on supported surfaces | Existing ChatGPT Work desktop setup passed live acceptance before this library |
 | Claude Code | Local skill folders | Registered identity; this library adds no new host acceptance result |
 | Claude chat | Custom skill ZIP uploads | Registered identity; this library adds no new host acceptance result |
+| Gemini CLI | Bundled extension with fifteen skills | Dedicated client configuration prepared; activation and live acceptance pending |
+| Antigravity | Project `.agents/skills/` folders | Account connection not verified |
 | Cursor | Local skill folders | Conditional on an accepted identity and callback; no live acceptance claimed here |
 | VS Code / GitHub Copilot | Local skill folders | Conditional on an accepted identity and callback; no live acceptance claimed here |
 
@@ -102,6 +104,28 @@ The following VS Code-specific `.vscode/mcp.json` pattern requires an accepted c
 ```
 
 VS Code opens a browser for OAuth on first connection. Its documentation also describes portable `.mcp.json` configurations with a top-level `mcpServers` object. Use the configuration format supported by your selected VS Code agent session. [OAuth configuration](https://code.visualstudio.com/docs/agents/reference/mcp-configuration), [configuration locations](https://code.visualstudio.com/docs/agent-customization/mcp-servers)
+
+## Gemini CLI
+
+Install the combined extension after its release passes acceptance:
+
+```sh
+gemini extensions install https://github.com/fillfolio/portfolio-mcp-skills
+```
+
+Run `/mcp auth fillfolio` inside Gemini CLI and use the browser consent flow. The extension uses public client `fillfolio-gemini-cli`, requests `mcp:read`, and fixes the callback to `http://localhost:7777/oauth/callback`. Keep that port available. [Fillfolio Gemini guide](gemini-cli.md), [Gemini extension format](https://geminicli.com/docs/extensions/reference/), [Gemini MCP authentication](https://geminicli.com/docs/tools/mcp-server/)
+
+As of October 17, 2026, server activation and live acceptance remain pending. An installed extension alone does not establish authenticated access. Gemini CLI dashboard rendering is not verified.
+
+## Antigravity
+
+For instruction-only use, clone this repository and copy selected canonical `skills/<selected-folder>` directories into your project's `.agents/skills/`. Preserve each folder name and its `SKILL.md`. Avoid copying a skill over a locally edited copy. [Antigravity skills](https://antigravity.google/docs/skills)
+
+These folders provide workflows. The Fillfolio account connection in Antigravity is **not verified**; authenticated tools require a separately accepted OAuth identity/callback and host acceptance. No Antigravity store listing or working MCP connection is claimed.
+
+## Gemini Enterprise
+
+Gemini Enterprise uses an organization-administered custom MCP connection. This CLI extension does not configure that service. Enterprise authentication and administrator setup remain deferred. [Google custom MCP setup](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/custom-mcp-server/set-up-custom-mcp-server)
 
 ## Other MCP clients
 

@@ -28,7 +28,7 @@ The first fourteen workflows use authenticated MCP. The public connection catalo
 
 ## Gemini CLI extension
 
-Version **0.1.1** bundles the fifteen workflows, Gemini context and a dedicated OAuth configuration in one extension. **Preparation status, October 17, 2026:** packaging is ready for validation; server activation and live Gemini acceptance remain pending. This status does not claim a working Gemini connection or gallery listing.
+Version **0.1.1** bundles the fifteen workflows, Gemini context and a dedicated OAuth configuration in one extension. **Preparation status, October 17, 2026:** full live Gemini acceptance remains pending. Release publication and gallery discovery remain pending.
 
 After the release passes acceptance and publishes, install it with:
 
@@ -36,7 +36,7 @@ After the release passes acceptance and publishes, install it with:
 gemini extensions install https://github.com/fillfolio/portfolio-mcp-skills
 ```
 
-Open Gemini CLI, run `/mcp auth fillfolio`, and complete browser sign-in and consent. Ask “Show my Fillfolio portfolio summary.” Use your own Gemini access and quota. See the [Gemini guide](docs/gemini-cli.md) for callback requirements, manual updates and current evidence. Gemini CLI dashboard rendering is unverified.
+Before the first account read, run `/mcp auth fillfolio` inside Gemini CLI and complete browser sign-in and consent. Run the command again when reauthorization is needed. Ask “Show my Fillfolio portfolio summary.” Use your own Gemini access and quota. See the [Gemini guide](docs/gemini-cli.md) for callback requirements, manual updates and current evidence. Gemini CLI dashboard rendering is unverified.
 
 ## Standalone skills
 

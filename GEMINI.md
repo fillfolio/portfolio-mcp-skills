@@ -4,9 +4,9 @@ Use the bundled skills for the user’s stored portfolio, stocks, ETFs, funds, c
 
 ## Connection
 
-The extension configures `https://fillfolio.com/api/mcp` with the dedicated public OAuth client `fillfolio-gemini-cli`. Run `/mcp auth fillfolio` in Gemini CLI and complete sign-in and consent in the browser. Use the registered callback `http://localhost:7777/oauth/callback`. Keep passwords, codes and tokens out of chat. A website sign-in alone does not authorize MCP.
+The extension configures `https://fillfolio.com/api/mcp` with the dedicated public OAuth client `fillfolio-gemini-cli`. To authorize a new connection, ask the user to run `/mcp auth fillfolio` in Gemini CLI and complete sign-in and consent in the browser. Use the registered callback `http://localhost:7777/oauth/callback`. Keep passwords, codes and tokens out of chat. A website sign-in alone does not authorize MCP.
 
-If tools are missing, give the authentication step and wait for the user. Do not repeat discovery or switch to another client identity. A `401` requires the host’s reconnect flow. A `403` requires resolving the stated account or permission restriction in Fillfolio Settings. Respect `Retry-After` on `429`; service errors do not mean empty data.
+If tools are missing, give the authentication step and wait for the user. Do not repeat discovery or switch to another client identity. After a `401`, ask the user to run `/mcp auth fillfolio` to reauthorize. A `403` requires resolving the stated account or permission restriction in Fillfolio Settings. Respect `Retry-After` on `429`; service errors do not mean empty data.
 
 ## Data handling
 

@@ -2,7 +2,7 @@
 
 The extension combines the fifteen canonical skills in this repository with `GEMINI.md` context and the remote Fillfolio MCP configuration.
 
-**Preparation status, October 17, 2026:** the 0.1.1 package awaits server activation and live Gemini acceptance. The install instructions below apply after those gates and publication. Gallery discovery remains pending until Google displays the listing. Gemini CLI dashboard rendering has not been verified.
+**Preparation status, October 17, 2026:** the 0.1.1 package awaits completion of live Gemini acceptance. The install instructions below apply after acceptance and publication. Gallery discovery remains pending until Google displays the listing. Gemini CLI dashboard rendering has not been verified.
 
 ## Install and connect
 
@@ -12,13 +12,13 @@ Use an official Gemini CLI version that passes the recorded acceptance checks. T
 gemini extensions install https://github.com/fillfolio/portfolio-mcp-skills
 ```
 
-Review the extension and its MCP connection before accepting installation. Open Gemini CLI, then authenticate:
+Review the extension and its MCP connection before accepting installation. Open Gemini CLI, then authenticate before the first account read:
 
 ```text
 /mcp auth fillfolio
 ```
 
-Complete Fillfolio sign-in and consent in the browser. Keep passwords, verification codes and tokens in that flow. Ask “Show my Fillfolio portfolio summary” to test authenticated reads. If the host reports a disabled permission, open Fillfolio Settings to manage it; reconnecting does not enable permission toggles.
+Complete Fillfolio sign-in and consent in the browser. Run `/mcp auth fillfolio` again when reauthorization is needed. Gemini CLI 0.64.0's automatic sign-in path does not preserve the configured client ID and callback; use the explicit command for Fillfolio. Keep passwords, verification codes and tokens in that flow. Ask “Show my Fillfolio portfolio summary” to test authenticated reads. If the host reports a disabled permission, open Fillfolio Settings to manage it; reconnecting does not enable permission toggles.
 
 The manifest uses these accepted values:
 
@@ -30,7 +30,7 @@ The manifest uses these accepted values:
 | Exact callback | `http://localhost:7777/oauth/callback` |
 | Authentication | Authorization Code with PKCE S256, no client secret |
 
-Leave port 7777 free for the callback. Stop an interrupted authentication attempt before trying again. Use Gemini's native OAuth flow and the dedicated client identity. Fillfolio disables Dynamic Client Registration.
+Leave port 7777 free for the callback. Stop an interrupted authentication attempt before trying again. Use the extension's preregistered Gemini client and exact callback. Fillfolio does not dynamically register Gemini clients.
 
 The hosted service requires a Fillfolio account with MCP eligibility. Provider coverage, stored history and account plan affect the available records. Spending and transactions require bank spending consent and this client's `spending:read` permission. Budgets require its separate `budgets:read` permission. Use Fillfolio Settings to revoke future access.
 

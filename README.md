@@ -26,7 +26,19 @@ Connect an accepted MCP client to **`https://fillfolio.com/api/mcp`**, then inst
 
 The first fourteen workflows use authenticated MCP. The public connection catalog uses an unauthenticated HTTP endpoint and requires a host that can fetch it.
 
-## Install
+## Gemini CLI extension
+
+Version **0.1.1** bundles the fifteen workflows, Gemini context and a dedicated OAuth configuration in one extension. **Preparation status, October 17, 2026:** full live Gemini acceptance remains pending. Release publication and gallery discovery remain pending.
+
+After the release passes acceptance and publishes, install it with:
+
+```sh
+gemini extensions install https://github.com/fillfolio/portfolio-mcp-skills
+```
+
+Before the first account read, run `/mcp auth fillfolio` inside Gemini CLI and complete browser sign-in and consent. Run the command again when reauthorization is needed. Ask “Show my Fillfolio portfolio summary.” Use your own Gemini access and quota. See the [Gemini guide](docs/gemini-cli.md) for callback requirements, manual updates and current evidence. Gemini CLI dashboard rendering is unverified.
+
+## Standalone skills
 
 1. [Connect your AI client](docs/client-setup.md). Confirm that Fillfolio accepts its OAuth identity and callback.
 2. Download a selected skill ZIP from [Releases](https://github.com/fillfolio/portfolio-mcp-skills/releases), or clone this repository:
@@ -40,7 +52,7 @@ The first fourteen workflows use authenticated MCP. The public connection catalo
 
 [Client setup](docs/client-setup.md) covers ChatGPT, Codex, Claude Code, Claude chat, Cursor, VS Code and other compatible hosts, with links to their official instructions. MCP support, skill support and dashboard rendering are separate capabilities. Registration and account eligibility also affect access.
 
-**Status, October 16, 2026:** the existing ChatGPT Work desktop and Codex connections passed live acceptance. This library does not establish a new authentication pass for every client. Fillfolio's separate native plugin **0.1.1 is In review**; public directory approval is pending. This skill library starts at **0.1.0** and does not replace that submitted package.
+**Status, October 16, 2026:** the existing ChatGPT Work desktop and Codex connections passed live acceptance. This library does not establish a new authentication pass for every client. Fillfolio's separate native plugin **0.1.1 is In review**; public directory approval is pending. This skill library has its own **0.1.1** release candidate and does not replace that submitted package.
 
 ## Data and access
 
@@ -64,6 +76,6 @@ python3 scripts/validate.py
 python3 scripts/build.py
 ```
 
-The builder creates a complete library ZIP, one ZIP per skill and SHA-256 checksums in `dist/`. Consumers need no Python dependency to read or install a skill. See [validation evidence](docs/validation.md) for the checks and their scope.
+The builder preserves the complete library and standalone skill ZIP formats in `dist/`. It also creates one Gemini extension ZIP with its manifest at the archive root in `dist/gemini/`. For the Gemini release, upload **only the ZIP** and put its SHA-256 in the release description. Keep `release-manifest.json` and `SHA256SUMS` as local release evidence. Gemini CLI 0.64.0 selects the generic ZIP only when the release has one attached asset; additional assets cause source-tarball fallback. Older release assets remain available. Consumers need no Python dependency to read or install a skill. See [validation evidence](docs/validation.md) for the checks and their scope.
 
-MIT license. Fillfolio is operated by VMPRO LLC. [Product](https://fillfolio.com) · [Privacy](https://fillfolio.com/privacy) · [MCP documentation](https://fillfolio.com/mcp)
+MIT license. Fillfolio is operated by VMPRO LLC. [Developer website](https://fillfolio.com/) · [Privacy](https://fillfolio.com/privacy) · [Official MCP connection page](https://fillfolio.com/mcp)

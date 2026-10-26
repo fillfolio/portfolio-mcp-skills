@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from build import build, digest
-from validate import TOOLS, ValidationError, validate
+from validate import TOOLS, GEMINI_PROFILE, GEMINI_DESCRIPTION, ValidationError, validate
 
 
 class PackagingTests(unittest.TestCase):
@@ -19,19 +19,19 @@ class PackagingTests(unittest.TestCase):
         for name in ("README.md", "LICENSE", "CONTRIBUTING.md", "requirements-dev.txt", "GEMINI.md"):
             (self.root / name).write_text("MIT License\nSynthetic example.\n", encoding="utf-8")
         self.catalog = {"schemaVersion": 1, "version": "0.1.0", "license": "MIT", "repository": "https://github.com/fillfolio/portfolio-mcp-skills",
-                        "mcp": {"tools": sorted(TOOLS)}, "skills": []}
+                        "mcp": {"tools": sorted(TOOLS)}, "mcpProfiles": {"gemini-cli": json.loads(json.dumps(GEMINI_PROFILE))}, "skills": []}
         for index in range(15):
             name = f"fillfolio-test-{index:02d}"
             path = self.root / "skills" / name
             path.mkdir(parents=True)
             (path / "SKILL.md").write_text(f'---\nname: {name}\ndescription: "Synthetic workflow."\nlicense: MIT\n---\nCall `open_fillfolio`.\n', encoding="utf-8")
-            self.catalog["skills"].append({"name": name, "path": f"skills/{name}", "tools": ["open_fillfolio"], "access": "authenticated-mcp"})
+            self.catalog["skills"].append({"name": name, "path": f"skills/{name}", "tools": ["open_fillfolio"], "optionalTools": ["open_fillfolio"], "access": "authenticated-mcp"})
         self.manifest = {
-            "name": "fillfolio", "version": "0.1.0", "contextFileName": "GEMINI.md",
+            "name": "fillfolio", "version": "0.1.0", "description": GEMINI_DESCRIPTION, "contextFileName": "GEMINI.md",
             "mcpServers": {"fillfolio": {
-                "httpUrl": "https://fillfolio.com/api/mcp",
-                "oauth": {"enabled": True, "clientId": "fillfolio-gemini-cli",
-                          "scopes": ["mcp:read"], "redirectUri": "http://localhost:7777/oauth/callback"},
+                "httpUrl": "https://free-mcp.fillfolio.com/mcp",
+                "oauth": {"enabled": True, "clientId": "fillfolio-free-gemini-cli",
+                          "scopes": ["portfolio:read"], "redirectUri": "http://localhost:7777/oauth/callback"},
             }},
         }
         self.save_manifest()
@@ -124,6 +124,21 @@ class PackagingTests(unittest.TestCase):
         (self.root / "GEMINI.md").write_text(" ")
         with self.assertRaises(ValidationError):
             validate(self.root)
+
+    def test_profile_and_optional_dependencies_cannot_hide_required_financial_tools(self):
+        original = json.dumps(self.catalog)
+        for change in ("endpoint", "resource", "client", "scope", "launcher", "optional-abuse", "missing-optional"):
+            self.catalog = json.loads(original)
+            profile = self.catalog["mcpProfiles"]["gemini-cli"]
+            if change == "endpoint": profile["endpoint"] = "https://fillfolio.com/api/mcp"
+            elif change == "resource": profile["resource"] = "https://fillfolio.com/api/mcp"
+            elif change == "client": profile["oauth"]["clientId"] = "fillfolio-gemini-cli"
+            elif change == "scope": profile["oauth"]["scopes"] = ["free-portfolio:read"]
+            elif change == "launcher": profile["tools"].append("open_fillfolio")
+            elif change == "optional-abuse": self.catalog["skills"][0]["optionalTools"] = ["get_asset"]
+            else: self.catalog["skills"][0].pop("optionalTools")
+            self.save_catalog()
+            with self.subTest(change=change), self.assertRaises(ValidationError): validate(self.root)
 
     def test_reject_symlink_and_unknown_file(self):
         link = self.root / "docs"

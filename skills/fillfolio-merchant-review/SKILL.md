@@ -9,6 +9,10 @@ license: MIT
 Inspect stored transactions that match the merchant the user named.
 Use `list_bank_transactions`; merchant analysis requires complete matching pages.
 
+Use the configured Fillfolio MCP connection and installed host profile and the records it exposes. Free shares one selected manual portfolio and up to three assets; describe that visible selection rather than hidden account records. Do not switch endpoints or client identities to bypass a restriction.
+
+For `plan_required`, explain the plan limit; for `consent_expansion_required`, reconnect this client to review categories; for `permission_required`, use its Settings permission. Free does not include bank spending or budgets.
+
 ## Access
 
 - Use the user's connected Fillfolio MCP tools. Keep credentials and tokens out of chat.

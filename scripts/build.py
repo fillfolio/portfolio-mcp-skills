@@ -47,7 +47,7 @@ def build(root):
             source = f"{skill['path']}/SKILL.md"
             archive(stage / f"skills/{skill['name']}.zip", {f"{skill['name']}/SKILL.md": files[source]})
         # Upload only the ZIP to the Gemini release. Companion checksum/metadata
-        # assets would make Gemini 0.64.0 fall back to the source tarball.
+        # assets would make Gemini 0.65.0 fall back to the source tarball.
         gemini = stage / "gemini"
         archive(gemini / gemini_archive, files)
         gemini_manifest = {

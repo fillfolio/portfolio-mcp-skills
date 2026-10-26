@@ -1,6 +1,6 @@
 # Validation
 
-Release candidate **0.1.1**, checked October 17, 2026.
+Release candidate **0.1.1**, updated October 26, 2026.
 
 ## Source and packaging
 
@@ -33,10 +33,26 @@ The supplied merchant mocks omit record IDs, so the execution disclosed that dup
 
 ## Limits of this evidence
 
-The 0.1.1 extension reuses the fifteen unchanged canonical skills. We tested the official Gemini CLI 0.64.0 OAuth and MCP components with the synthetic reviewer on October 17, 2026. Ten-tool discovery, portfolio reads and pagination, the four spending/budget permission states, dashboard resource delivery and 662,704 milliseconds of continued access passed on the earlier service release. Those checks did not exercise Gemini model responses or dashboard rendering.
+The new Free/paid candidate retains fifteen canonical skill names and updates their content for host profiles. The earlier tests below describe the old paid-only candidate and do not establish current acceptance. We tested the official Gemini CLI 0.64.0 OAuth and MCP components with the synthetic reviewer on October 17, 2026. Ten-tool discovery, portfolio reads and pagination, the four spending/budget permission states, dashboard resource delivery and 662,704 milliseconds of continued access passed on the earlier service release. Those checks did not exercise Gemini model responses or dashboard rendering.
 
 The package remains unreleased. We must complete acceptance on the final service release, including Gemini-only revocation and reconnection, permission restoration and the existing ChatGPT connection control. The earlier Work/Codex control is separate evidence.
 
 These are format, packaging, source-review and synthetic execution results. They do not establish a fresh OAuth acceptance pass for every AI client. The existing ChatGPT Work desktop and Codex connections passed live acceptance before this library. Other client status is documented in [Client setup](client-setup.md).
 
 The separate native Fillfolio plugin 0.1.1 is In review. This library has its own version and does not change the submitted plugin, account permissions or financial records.
+
+## Free/paid profile acceptance
+
+Current package and live results will be recorded after testing the new nine-tool profile with official CLI 0.65.0. Required checks cover Free limits, paid consent, optional permissions, downgrade, continued access and isolated revocation. Missing historical temporary artifacts are unavailable evidence, not regenerated PASS receipts. No new-profile release or gallery listing is claimed.
+
+## October 26, 2026 plan-aware candidate
+
+The revised Gemini profile uses `https://free-mcp.fillfolio.com/mcp`, public client `fillfolio-free-gemini-cli`, OAuth `portfolio:read`, and the exact localhost:7777 callback. Its nine read tools cover Free and eligible paid accounts. The fifteen canonical workflow names remain; their instructions now distinguish host profiles and plan limits.
+
+The validator passes all fifteen skills and 31 exported files. Nine packaging tests pass, and two builds produce identical 21-file output sets. Official Gemini CLI 0.65.0 installed the extracted candidate archive in an isolated configuration; all 31 installed files match and fifteen skills are present. The CLI accepts a local folder rather than a direct ZIP path. GitHub release-asset installation and live authentication still require acceptance before publication.
+
+Independent source review exercised Free portfolio comparison limits, Gemini dashboard requests, separate authentication/plan/consent/permission outcomes, hostile merchant text and the legacy dashboard launcher. The review found an unqualified dynamic-registration claim in the connect skill; the corrected text limits the claim to Gemini. This review did not call a model or access an account.
+
+The shared central skill registry check reports existing inventory, recommendation and source-authority drift outside this library. The fifteen canonical library files pass their individual skill-format checks. This change does not repair unrelated generated or installed skills.
+
+Live Free/paid reads, model conversations, idle-access and revocation checks remain pending. Historical paid-Gemini results above do not establish acceptance for the new profile.

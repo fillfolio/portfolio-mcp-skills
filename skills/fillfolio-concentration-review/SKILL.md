@@ -8,9 +8,11 @@ license: MIT
 
 Use this skill for largest-position and top-N exposure questions about current holdings.
 
+Use the installed host profile and the records it exposes. Free shares one selected manual portfolio and up to three assets; describe that visible selection rather than hidden account records. Do not switch endpoints or client identities to bypass a restriction.
+
 ## Connection
 
-Use the host’s exposed Fillfolio tool namespace at `https://fillfolio.com/api/mcp`.
+Use the configured Fillfolio MCP connection and its exposed tool namespace.
 If tools are unavailable, give one step to connect or sign in through the host’s MCP settings and stop.
 Do not poll, request credentials in chat, or use browser/PWA scraping.
 

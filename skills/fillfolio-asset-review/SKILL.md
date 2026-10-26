@@ -8,9 +8,11 @@ license: MIT
 
 Use this skill to inspect one instrument and where the connected user holds it.
 
+Use the installed host profile and the records it exposes. Free shares one selected manual portfolio and up to three assets; describe that visible selection rather than hidden account records. Do not switch endpoints or client identities to bypass a restriction.
+
 ## Connection
 
-Use the Fillfolio tool namespace exposed by the host at `https://fillfolio.com/api/mcp`.
+Use the configured Fillfolio MCP connection and its exposed tool namespace.
 If tools are unavailable, give one step to connect or sign in through the host’s MCP settings, then stop.
 Do not poll, collect credentials in chat, or fall back to browser/PWA scraping.
 

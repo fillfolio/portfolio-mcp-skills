@@ -6,7 +6,7 @@ Release candidate **0.1.1**, updated October 26, 2026.
 
 - All 15 skills pass the Skill Creator frontmatter validator.
 - The repository validator checks catalog identity, declared tool dependencies, self-contained skill paths, public links and export boundaries.
-- Eight offline packaging tests cover deterministic archives and checksums, standalone ZIP layout, the Gemini root-manifest ZIP and its single-archive release set, exact OAuth configuration, symlink and path rejection, unexpected files, duplicate metadata and credential-shaped literals.
+- Nine offline packaging tests cover deterministic archives and checksums, standalone ZIP layout, the Gemini root-manifest ZIP and its single-archive release set, exact OAuth configuration, symlink and path rejection, unexpected files, duplicate metadata and credential-shaped literals.
 - The build creates the existing library and fifteen standalone ZIPs plus a separate Gemini release set. Repeated builds must produce identical bytes. The validator limits exports to the public source set.
 - An independent source review checked all 15 workflows against Fillfolio's current MCP schemas and implementations.
 
@@ -39,7 +39,7 @@ The package remains unreleased. We must complete acceptance on the final service
 
 These are format, packaging, source-review and synthetic execution results. They do not establish a fresh OAuth acceptance pass for every AI client. The existing ChatGPT Work desktop and Codex connections passed live acceptance before this library. Other client status is documented in [Client setup](client-setup.md).
 
-The separate native Fillfolio plugin 0.1.1 is In review. This library has its own version and does not change the submitted plugin, account permissions or financial records.
+The native Fillfolio plugin has a separate listing and release lifecycle. This library has its own version and does not change that plugin, account permissions or financial records.
 
 ## Free/paid profile acceptance
 

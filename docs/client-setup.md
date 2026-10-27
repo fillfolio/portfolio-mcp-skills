@@ -1,12 +1,12 @@
 # Client setup
 
-Official client documentation checked on **October 16, 2026**.
+Gemini profile updated on **October 27, 2026**. The other client examples retain their earlier documented setup; this change adds no new host acceptance result.
 
 Choose the workflows you need from `skills/`. Copy each selected folder, including its `SKILL.md` and references, to your client's skill directory below. For a host that accepts ZIP uploads, use the ZIP for that workflow from a release. Keep the skill folder at the archive root. The shared file format follows the [Agent Skills specification](https://agentskills.io/specification).
 
 ## Connection requirements and status
 
-Connect your host to **`https://fillfolio.com/api/mcp`** through its OAuth flow. Fillfolio accepts specific registered client identities and callback rules; it disables Dynamic Client Registration. A client must use an accepted identity, support PKCE with `S256`, request `mcp:read`, and bind authorization to the MCP resource. Use Fillfolio's advertised MCP authentication metadata and scopes. Account sign-in scopes from an identity provider do not replace MCP authorization.
+Choose the registered profile for your host. The Gemini extension uses **`https://free-mcp.fillfolio.com/mcp`** with scope **`portfolio:read`** for Free and paid accounts. It provides nine financial read tools and no dashboard launcher or UI resource. The legacy profile below uses **`https://fillfolio.com/api/mcp`** with **`mcp:read`**. Keep each profile's endpoint, client identity, resource and scope together. Connect through your host's OAuth flow. Fillfolio accepts approved client identities and callbacks; it does not offer general-purpose client registration. A client must use an accepted identity, support PKCE with `S256`, request the active profile's scope, and bind authorization to that profile's MCP resource. Use Fillfolio's advertised MCP authentication metadata and scopes. Account sign-in scopes from an identity provider do not replace MCP authorization.
 
 Fillfolio has registered identities for ChatGPT, Codex, Claude web, and Claude Code. Registration establishes which identity Fillfolio accepts; a successful connection also depends on the host's discovery, redirect, and token behavior. Other clients need an accepted preregistered identity and callback configuration before their OAuth connection can work. See the [public MCP contract](https://github.com/fillfolio/portfolio-mcp) for Fillfolio's authorization contract and the [MCP authorization specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) for the protocol.
 
@@ -16,10 +16,12 @@ Fillfolio has registered identities for ChatGPT, Codex, Claude web, and Claude C
 | ChatGPT | Desktop standalone skills; plugins on supported surfaces | Existing ChatGPT Work desktop setup passed live acceptance before this library |
 | Claude Code | Local skill folders | Registered identity; this library adds no new host acceptance result |
 | Claude chat | Custom skill ZIP uploads | Registered identity; this library adds no new host acceptance result |
+| Gemini CLI | Bundled extension with fifteen skills | Official CLI 0.65.0 Free native checks and eight model cases pass; live paid tests deferred |
+| Antigravity | Project `.agents/skills/` folders | Account connection not verified |
 | Cursor | Local skill folders | Conditional on an accepted identity and callback; no live acceptance claimed here |
 | VS Code / GitHub Copilot | Local skill folders | Conditional on an accepted identity and callback; no live acceptance claimed here |
 
-Library format checks do not establish OAuth compatibility. The native Fillfolio plugin **0.1.1 is In review** as of October 16, 2026. Public directory approval remains pending. Copying these skill folders installs workflow instructions; complete your host's connection or plugin installation flow to obtain tools.
+Library format checks do not establish OAuth compatibility. The native Fillfolio plugin and this Gemini extension have separate releases and acceptance evidence; consult their current listings for availability. Copying these skill folders installs workflow instructions; complete your host's connection or plugin installation flow to obtain tools.
 
 ## Codex
 
@@ -38,7 +40,7 @@ Then run `codex mcp login fillfolio` and complete the browser authorization. Reu
 
 Use the skill or plugin installation flow available on your surface. OpenAI documents standalone skills in the ChatGPT desktop app and plugins across supported ChatGPT surfaces. Hosted ChatGPT uses installed plugin connectors for remote MCP tools; ChatGPT web does not read your local Codex configuration. Uploading a `SKILL.md` as an ordinary attachment does not install or connect Fillfolio. [Skill availability](https://learn.chatgpt.com/docs/build-skills), [plugin installation](https://learn.chatgpt.com/docs/plugins), [hosted MCP setup](https://learn.chatgpt.com/docs/extend/mcp?surface=cli)
 
-While Fillfolio 0.1.1 remains In review, use an existing private or eligible host setup you already have access to. This repository provides no public directory installation link. Complete Fillfolio OAuth when the host prompts you, then select the workflow you installed.
+Use an existing private or eligible host setup you already have access to. This repository provides no public directory installation link. Complete Fillfolio OAuth when the host prompts you, then select the workflow you installed.
 
 ## Claude Code
 
@@ -56,7 +58,7 @@ Claude Code supports CIMD discovery and preregistered OAuth clients. Use its reg
 
 Upload a selected workflow ZIP through **Customize → Skills → + → Create skill → Upload a skill**, then enable it. Claude requires code execution for skills. The ZIP must contain the skill folder at its root, with `SKILL.md` inside. [Upload and enable skills](https://support.claude.com/en/articles/12512180-use-skills-in-claude), [ZIP structure](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills)
 
-Add the endpoint through **Customize → Connectors → Add custom connector** and complete OAuth. Select Claude's published identity when it matches Fillfolio's accepted registration. Automatic registration cannot work with Fillfolio's disabled DCR. The own-client option requires an existing accepted client ID and callback registration. Organization policy can require an owner to add the connector. [Custom connector setup](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp)
+Add the endpoint through **Customize → Connectors → Add custom connector** and complete OAuth. Select Claude's published identity when it matches Fillfolio's accepted registration. Fillfolio does not dynamically register Claude clients. The own-client option requires an existing accepted client ID and callback registration. Organization policy can require an owner to add the connector. [Custom connector setup](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp)
 
 Claude's hosted callback is `https://claude.ai/api/mcp/auth_callback`. Its hosted connector traffic comes from Anthropic's infrastructure. Claude documents the discovery fields it requires before selecting CIMD in its [connector authentication guide](https://claude.com/docs/connectors/building/authentication).
 
@@ -103,8 +105,30 @@ The following VS Code-specific `.vscode/mcp.json` pattern requires an accepted c
 
 VS Code opens a browser for OAuth on first connection. Its documentation also describes portable `.mcp.json` configurations with a top-level `mcpServers` object. Use the configuration format supported by your selected VS Code agent session. [OAuth configuration](https://code.visualstudio.com/docs/agents/reference/mcp-configuration), [configuration locations](https://code.visualstudio.com/docs/agent-customization/mcp-servers)
 
+## Gemini CLI
+
+Install the combined extension:
+
+```sh
+gemini extensions install https://github.com/fillfolio/portfolio-mcp-skills
+```
+
+Before the first account read, run `/mcp auth fillfolio` inside Gemini CLI and use the browser consent flow. Run the command again when reauthorization is needed. The extension uses public client `fillfolio-free-gemini-cli`, requests `portfolio:read`, and fixes the callback to `http://localhost:7777/oauth/callback`. Keep that port available. [Fillfolio Gemini guide](gemini-cli.md), [Gemini extension format](https://geminicli.com/docs/extensions/reference/), [Gemini MCP authentication](https://geminicli.com/docs/tools/mcp-server/)
+
+As of October 27, 2026, the client is active. Free native checks and eight synthetic model cases pass with official CLI 0.65.0; live paid tests are deferred. Free accounts can read one selected manual portfolio and three active assets. Paid categories require eligible access and explicit consent; spending and budgets also require separate client permissions. Gemini provides no dashboard launcher or UI resource on this endpoint. An installed extension alone does not establish authenticated access.
+
+## Antigravity
+
+For instruction-only use, clone this repository and copy selected canonical `skills/<selected-folder>` directories into your project's `.agents/skills/`. Preserve each folder name and its `SKILL.md`. Avoid copying a skill over a locally edited copy. [Antigravity skills](https://antigravity.google/docs/skills)
+
+These folders provide workflows. The Fillfolio account connection in Antigravity is **not verified**; authenticated tools require a separately accepted OAuth identity/callback and host acceptance. No Antigravity store listing or working MCP connection is claimed.
+
+## Gemini Enterprise
+
+Gemini Enterprise uses an organization-administered custom MCP connection. This CLI extension does not configure that service. Enterprise authentication and administrator setup remain deferred. [Google custom MCP setup](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/custom-mcp-server/set-up-custom-mcp-server)
+
 ## Other MCP clients
 
 Check whether your client reads the Agent Skills format and where it discovers skill folders. If it does, copy only your selected workflow folders into that location. If it lacks skill discovery, you can read a workflow's instructions as a manual reference, subject to the tools your host exposes.
 
-Remote MCP support alone does not establish a Fillfolio connection. Confirm the client's accepted OAuth identity and callback, resource binding, PKCE `S256`, and `mcp:read` support before setup. Keep credentials in the host's OAuth connection flow. Consult the [MCP authorization specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) and your client's official documentation.
+Remote MCP support alone does not establish a Fillfolio connection. Confirm the client's accepted OAuth identity and callback, resource binding, PKCE `S256`, and the scope required by that registered profile before setup. Keep credentials in the host's OAuth connection flow. Consult the [MCP authorization specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) and your client's official documentation.

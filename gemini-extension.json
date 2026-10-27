@@ -1,0 +1,19 @@
+{
+  "name": "fillfolio",
+  "version": "0.1.1",
+  "description": "Read-only Fillfolio portfolios, spending and budgets for Free and paid accounts.",
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "fillfolio": {
+      "httpUrl": "https://free-mcp.fillfolio.com/mcp",
+      "oauth": {
+        "enabled": true,
+        "clientId": "fillfolio-free-gemini-cli",
+        "scopes": [
+          "portfolio:read"
+        ],
+        "redirectUri": "http://localhost:7777/oauth/callback"
+      }
+    }
+  }
+}

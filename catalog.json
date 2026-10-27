@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "name": "Fillfolio Skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": "https://github.com/fillfolio/portfolio-mcp-skills",
   "license": "MIT",
   "mcp": {
@@ -29,7 +29,10 @@
         "open_fillfolio",
         "get_portfolio_summary"
       ],
-      "access": "authenticated-mcp"
+      "access": "authenticated-mcp",
+      "optionalTools": [
+        "open_fillfolio"
+      ]
     },
     {
       "name": "fillfolio-portfolio-overview",
@@ -178,5 +181,31 @@
       "tools": [],
       "access": "public-http"
     }
-  ]
+  ],
+  "mcpProfiles": {
+    "gemini-cli": {
+      "endpoint": "https://free-mcp.fillfolio.com/mcp",
+      "resource": "https://free-mcp.fillfolio.com/mcp",
+      "transport": "streamable-http",
+      "oauth": {
+        "enabled": true,
+        "clientId": "fillfolio-free-gemini-cli",
+        "scopes": [
+          "portfolio:read"
+        ],
+        "redirectUri": "http://localhost:7777/oauth/callback"
+      },
+      "tools": [
+        "get_asset",
+        "get_portfolio_summary",
+        "get_spending_summary",
+        "list_activity",
+        "list_bank_transactions",
+        "list_budgets",
+        "list_cash_and_liabilities",
+        "list_holdings",
+        "list_portfolios"
+      ]
+    }
+  }
 }

@@ -10,7 +10,10 @@ import yaml
 TOOLS = frozenset("open_fillfolio get_portfolio_summary list_portfolios list_holdings "
                   "list_cash_and_liabilities list_activity get_asset get_spending_summary "
                   "list_bank_transactions list_budgets".split())
-ROOT_FILES = frozenset("README.md LICENSE CONTRIBUTING.md catalog.json requirements-dev.txt".split())
+GEMINI_TOOLS = TOOLS - {"open_fillfolio"}
+GEMINI_PROFILE = {'endpoint': 'https://free-mcp.fillfolio.com/mcp', 'resource': 'https://free-mcp.fillfolio.com/mcp', 'transport': 'streamable-http', 'oauth': {'enabled': True, 'clientId': 'fillfolio-free-gemini-cli', 'scopes': ['portfolio:read'], 'redirectUri': 'http://localhost:7777/oauth/callback'}, 'tools': ['get_asset', 'get_portfolio_summary', 'get_spending_summary', 'list_activity', 'list_bank_transactions', 'list_budgets', 'list_cash_and_liabilities', 'list_holdings', 'list_portfolios']}
+GEMINI_DESCRIPTION = 'Read-only Fillfolio portfolios, spending and budgets for Free and paid accounts.'
+ROOT_FILES = frozenset("README.md LICENSE CONTRIBUTING.md catalog.json requirements-dev.txt gemini-extension.json GEMINI.md".split())
 LOCAL = frozenset("AGENTS.md .gitignore .git .codex dist .DS_Store __pycache__ .pytest_cache".split())
 NAME = re.compile(r"fillfolio-[a-z0-9]+(?:-[a-z0-9]+)*\Z")
 TOOL = re.compile(r"\b(?:get|list|open|create|update|delete|set|refresh|connect|search)_[a-z][a-z0-9_]*\b")
@@ -91,6 +94,16 @@ def validate(root):
         require(catalog.get("schemaVersion") == 1 and catalog.get("license") == "MIT", "invalid catalog schema/license")
         require(re.fullmatch(r"\d+\.\d+\.\d+", catalog.get("version", "")), "invalid release version")
         require(catalog.get("repository") == "https://github.com/fillfolio/portfolio-mcp-skills", "unexpected repository")
+        extension = json.loads(files["gemini-extension.json"], object_pairs_hook=unique_mapping)
+        require(catalog.get("mcpProfiles") == {"gemini-cli": GEMINI_PROFILE}, "Gemini profile differs from accepted configuration")
+        expected_extension = {
+            "name": "fillfolio", "version": catalog["version"], "description": GEMINI_DESCRIPTION,
+            "contextFileName": "GEMINI.md",
+            "mcpServers": {"fillfolio": {"httpUrl": GEMINI_PROFILE["endpoint"], "oauth": GEMINI_PROFILE["oauth"]}},
+        }
+        require(extension == expected_extension and type(extension["mcpServers"]["fillfolio"]["oauth"]["enabled"]) is bool,
+                "Gemini manifest differs from the accepted OAuth configuration")
+        require(bool(files["GEMINI.md"].strip()), "Gemini context cannot be empty")
         known = catalog.get("mcp", {}).get("tools", [])
         require(isinstance(known, list) and len(known) == len(TOOLS) and set(known) == TOOLS, "unknown or missing MCP tools")
         skills = catalog.get("skills", [])
@@ -102,6 +115,10 @@ def validate(root):
             require(path == f"skills/{name}" and path not in paths, "invalid or duplicate skill path")
             require(isinstance(tools, list) and len(tools) == len(set(tools)) and set(tools) <= TOOLS, f"invalid tools: {name}")
             require(skill.get("access") in {"authenticated-mcp", "public-http"}, f"invalid access: {name}")
+            optional = skill.get("optionalTools", [])
+            require(isinstance(optional, list) and len(optional) == len(set(optional)) and set(optional) <= set(tools) & {"open_fillfolio"}, f"invalid optional tools: {name}")
+            if skill["access"] == "authenticated-mcp":
+                require(set(tools) - set(optional) <= GEMINI_TOOLS, f"required tools unavailable in Gemini profile: {name}")
             names.add(name)
             paths.add(path)
             source = files.get(f"{path}/SKILL.md", b"").decode("utf-8")

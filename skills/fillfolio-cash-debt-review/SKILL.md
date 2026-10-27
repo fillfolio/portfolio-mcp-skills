@@ -8,9 +8,13 @@ license: MIT
 
 Use this skill for stored cash balances, liabilities and their place in current net worth.
 
+Use the installed host profile and the records it exposes. Free shares one selected manual portfolio and up to three assets; describe that visible selection rather than hidden account records. Do not switch endpoints or client identities to bypass a restriction.
+
+Cash and liabilities require an eligible plan and approved category. A plan restriction is not an empty balance or a reason to retry authentication.
+
 ## Connection
 
-Use the host’s exposed Fillfolio tool namespace at `https://fillfolio.com/api/mcp`.
+Use the configured Fillfolio MCP connection and its exposed tool namespace.
 If tools are unavailable, give one step to connect or sign in through the host’s MCP settings, then stop.
 Do not poll, request credentials in chat, or use browser/PWA scraping.
 

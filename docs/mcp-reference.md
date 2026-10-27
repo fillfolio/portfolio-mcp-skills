@@ -2,7 +2,13 @@
 
 Reviewed October 16, 2026 against the current deployed tool behavior. Discover the tools in your connected host before calling them; host namespaces and available subsets vary.
 
-## Endpoint and authorization
+## Connection profiles
+
+The Gemini extension uses `https://free-mcp.fillfolio.com/mcp` as its endpoint and OAuth resource, with `portfolio:read` and the registered `fillfolio-free-gemini-cli` identity. It exposes the nine financial read tools below, without `open_fillfolio` or a UI resource. Free and paid access follow the account plan and category consent. See the [Gemini guide](gemini-cli.md) for exact configuration and current acceptance limits.
+
+On this profile, HTTP 200 with `isError: true` can report `plan_required`, `consent_expansion_required` or a disabled optional permission. Resolve the stated requirement in Fillfolio; reconnecting does not change the plan or permission switches. HTTP 401 remains an authentication failure.
+
+## Legacy endpoint and authorization
 
 - Endpoint/resource: `https://fillfolio.com/api/mcp`, Streamable HTTP.
 - Protected-resource metadata: `https://fillfolio.com/.well-known/oauth-protected-resource/api/mcp`.

@@ -28,9 +28,9 @@ The first fourteen workflows use authenticated MCP. The public connection catalo
 
 ## Gemini CLI extension
 
-Version **0.1.1** bundles the fifteen workflows, Gemini context and a dedicated OAuth configuration in one extension. **Preparation status, October 26, 2026:** the dedicated Free/paid client and updated skills await guarded backend activation and current-runtime acceptance. Release publication and gallery discovery remain pending.
+Version **0.1.1** bundles the fifteen workflows, Gemini context and a dedicated OAuth configuration in one extension. **Tested October 27, 2026:** the dedicated client is active. Free-account native checks and eight model cases pass with official Gemini CLI 0.65.0. Live paid-plan tests are deferred. See the [validation record](docs/validation.md) for the evidence and limits. Gallery discovery remains pending.
 
-After the release passes acceptance and publishes, install it with:
+Install version 0.1.1 from its GitHub release:
 
 ```sh
 gemini extensions install https://github.com/fillfolio/portfolio-mcp-skills
@@ -76,7 +76,7 @@ python3 scripts/validate.py
 python3 scripts/build.py
 ```
 
-The builder preserves the complete library and standalone skill ZIP formats in `dist/`. It also creates one Gemini extension ZIP with its manifest at the archive root in `dist/gemini/`. For the Gemini release, upload **only the ZIP** and put its SHA-256 in the release description. Keep `release-manifest.json` and `SHA256SUMS` as local release evidence. Gemini CLI 0.64.0 selects the generic ZIP only when the release has one attached asset; additional assets cause source-tarball fallback. Older release assets remain available. Consumers need no Python dependency to read or install a skill. See [validation evidence](docs/validation.md) for the checks and their scope.
+The builder preserves the complete library and standalone skill ZIP formats in `dist/`. It also creates one Gemini extension ZIP with its manifest at the archive root in `dist/gemini/`. For the Gemini release, upload **only the ZIP** and put its SHA-256 in the release description. Keep `release-manifest.json` and `SHA256SUMS` as local release evidence. Gemini CLI 0.65.0 selects the generic ZIP only when the release has one attached asset; additional assets cause source-tarball fallback. Older release assets remain available. Consumers need no Python dependency to read or install a skill. See [validation evidence](docs/validation.md) for the checks and their scope.
 
 MIT license. Fillfolio is operated by VMPRO LLC. [Developer website](https://fillfolio.com/) · [Privacy](https://fillfolio.com/privacy) · [Official MCP connection page](https://fillfolio.com/mcp)
 

@@ -1,6 +1,6 @@
 # Client setup
 
-Gemini profile updated on **October 26, 2026**. The other client examples retain their earlier documented setup; this change adds no new host acceptance result.
+Gemini profile updated on **October 27, 2026**. The other client examples retain their earlier documented setup; this change adds no new host acceptance result.
 
 Choose the workflows you need from `skills/`. Copy each selected folder, including its `SKILL.md` and references, to your client's skill directory below. For a host that accepts ZIP uploads, use the ZIP for that workflow from a release. Keep the skill folder at the archive root. The shared file format follows the [Agent Skills specification](https://agentskills.io/specification).
 
@@ -16,7 +16,7 @@ Fillfolio has registered identities for ChatGPT, Codex, Claude web, and Claude C
 | ChatGPT | Desktop standalone skills; plugins on supported surfaces | Existing ChatGPT Work desktop setup passed live acceptance before this library |
 | Claude Code | Local skill folders | Registered identity; this library adds no new host acceptance result |
 | Claude chat | Custom skill ZIP uploads | Registered identity; this library adds no new host acceptance result |
-| Gemini CLI | Bundled extension with fifteen skills | Free/paid profile prepared; activation and live acceptance pending |
+| Gemini CLI | Bundled extension with fifteen skills | Official CLI 0.65.0 Free native checks and eight model cases pass; live paid tests deferred |
 | Antigravity | Project `.agents/skills/` folders | Account connection not verified |
 | Cursor | Local skill folders | Conditional on an accepted identity and callback; no live acceptance claimed here |
 | VS Code / GitHub Copilot | Local skill folders | Conditional on an accepted identity and callback; no live acceptance claimed here |
@@ -107,7 +107,7 @@ VS Code opens a browser for OAuth on first connection. Its documentation also de
 
 ## Gemini CLI
 
-Install the combined extension after its release passes acceptance:
+Install the combined extension:
 
 ```sh
 gemini extensions install https://github.com/fillfolio/portfolio-mcp-skills
@@ -115,7 +115,7 @@ gemini extensions install https://github.com/fillfolio/portfolio-mcp-skills
 
 Before the first account read, run `/mcp auth fillfolio` inside Gemini CLI and use the browser consent flow. Run the command again when reauthorization is needed. The extension uses public client `fillfolio-free-gemini-cli`, requests `portfolio:read`, and fixes the callback to `http://localhost:7777/oauth/callback`. Keep that port available. [Fillfolio Gemini guide](gemini-cli.md), [Gemini extension format](https://geminicli.com/docs/extensions/reference/), [Gemini MCP authentication](https://geminicli.com/docs/tools/mcp-server/)
 
-As of October 26, 2026, the new profile awaits activation and full live acceptance. Free accounts can read one selected manual portfolio and three active assets. Paid categories require eligible access and explicit consent; spending and budgets also require separate client permissions. Gemini provides no dashboard launcher or UI resource on this endpoint. An installed extension alone does not establish authenticated access.
+As of October 27, 2026, the client is active. Free native checks and eight synthetic model cases pass with official CLI 0.65.0; live paid tests are deferred. Free accounts can read one selected manual portfolio and three active assets. Paid categories require eligible access and explicit consent; spending and budgets also require separate client permissions. Gemini provides no dashboard launcher or UI resource on this endpoint. An installed extension alone does not establish authenticated access.
 
 ## Antigravity
 

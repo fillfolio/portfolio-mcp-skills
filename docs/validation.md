@@ -1,6 +1,6 @@
 # Validation
 
-Release candidate **0.1.1**, updated October 26, 2026.
+Version **0.1.1**, checked October 27, 2026.
 
 ## Source and packaging
 
@@ -31,28 +31,39 @@ A separate assistant executed the skills with mock tool responses. No live accou
 
 The supplied merchant mocks omit record IDs, so the execution disclosed that duplicate-ID checking was unavailable. Real tool results include IDs; the skill requires that check.
 
-## Limits of this evidence
+## Current Gemini Free acceptance
 
-The new Free/paid candidate retains fifteen canonical skill names and updates their content for host profiles. The earlier tests below describe the old paid-only candidate and do not establish current acceptance. We tested the official Gemini CLI 0.64.0 OAuth and MCP components with the synthetic reviewer on October 17, 2026. Ten-tool discovery, portfolio reads and pagination, the four spending/budget permission states, dashboard resource delivery and 662,704 milliseconds of continued access passed on the earlier service release. Those checks did not exercise Gemini model responses or dashboard rendering.
+We tested the dedicated nine-tool profile with the official Gemini CLI **0.65.0** and an account whose owner confirmed its records are synthetic. The profile uses `https://free-mcp.fillfolio.com/mcp`, `fillfolio-free-gemini-cli`, `portfolio:read` and the exact `http://localhost:7777/oauth/callback` redirect.
 
-The package remains unreleased. We must complete acceptance on the final service release, including Gemini-only revocation and reconnection, permission restoration and the existing ChatGPT connection control. The earlier Work/Codex control is separate evidence.
+| Check | Observed result |
+| --- | --- |
+| Explicit authorization and reconnection | Browser sign-in, consent, callback and token exchange passed through the official CLI OAuth components |
+| Native discovery and reads | Nine read-only tools; summary, portfolio listing, three holdings pages, returned asset ID and opening activity passed |
+| Free category boundaries | Cash, spending, transactions and budgets returned the expected `plan_required` tool errors; summary still worked afterward |
+| Continued access | A correct later summary followed 660 seconds with no intervening Gemini requests; token rotation was not observed |
+| Gemini-only revocation | The retained session received HTTP 401 after revocation; explicit Gemini reconnection and reads passed |
+| Model workflows | Eight cases passed with `gemini-3.5-flash-lite`: summary, holdings pagination, returned asset, opening activity, Free spending denial, financial-write refusal, cross-user refusal and inline hostile data |
 
-These are format, packaging, source-review and synthetic execution results. They do not establish a fresh OAuth acceptance pass for every AI client. The existing ChatGPT Work desktop and Codex connections passed live acceptance before this library. Other client status is documented in [Client setup](client-setup.md).
+The continued-access check ran before a web-only error-format correction. That correction changes the exact Gemini client's permission-error text, with no OAuth or refresh-code change. The corrected runtime passed the Free denials and permitted reads again. The official CLI promotes JSON error text into success-schema validation; the correction retains HTTP 200 and `isError: true` with a fixed error code in plain text. Authentication failures remain HTTP 401.
 
-The native Fillfolio plugin has a separate listing and release lifecycle. This library has its own version and does not change that plugin, account permissions or financial records.
+The eight model cases used the owner's existing Google AI Studio Free-tier project. No billing was enabled and no key was created. Eight CLI invocations completed; the number of model HTTP requests was not observed. The bounded headless test configuration allowed only skill activation and the nine Fillfolio read tools, with shell, file and web tools excluded. These results do not claim default headless-policy behavior or model execution of all fifteen workflows. The hostile-label case used inline synthetic data, not a live bank-import path.
 
-## Free/paid profile acceptance
+Root and independent reviewers checked the saved answers for currency labels, missing values, opening-history limits, permission handling and refusal behavior. Failed diagnostic attempts remain separate from the completed run. Model credentials stayed outside the public package.
 
-Current package and live results will be recorded after testing the new nine-tool profile with official CLI 0.65.0. Required checks cover Free limits, paid consent, optional permissions, downgrade, continued access and isolated revocation. Missing historical temporary artifacts are unavailable evidence, not regenerated PASS receipts. No new-profile release or gallery listing is claimed.
+## Deferred and separate evidence
 
-## October 26, 2026 plan-aware candidate
+Live paid-plan fixtures, the paid permission matrix and downgrade acceptance are **deferred** by the owner. No temporary plan or fixture changes began. The current Free results do not establish paid live acceptance.
 
-The revised Gemini profile uses `https://free-mcp.fillfolio.com/mcp`, public client `fillfolio-free-gemini-cli`, OAuth `portfolio:read`, and the exact localhost:7777 callback. Its nine read tools cover Free and eligible paid accounts. The fifteen canonical workflow names remain; their instructions now distinguish host profiles and plan limits.
+The owner supplied a fresh screenshot from the existing ChatGPT Fillfolio conversation after the Gemini revoke/reconnect sequence. Its October 27, 16:55 local retrieval shows the expected synthetic USD 10,912 net worth and a new answer. This is an owner-assisted final control, not an independently captured request or a complete before/during/after sequence. Earlier Work/Codex results remain separate evidence.
 
-The validator passes all fifteen skills and 31 exported files. Nine packaging tests pass, and two builds produce identical 21-file output sets. Official Gemini CLI 0.65.0 installed the extracted candidate archive in an isolated configuration; all 31 installed files match and fifteen skills are present. The CLI accepts a local folder rather than a direct ZIP path. GitHub release-asset installation and live authentication still require acceptance before publication.
+Earlier October 17 tests used official CLI 0.64.0 components and the old paid-only profile. They covered ten-tool discovery, portfolio pagination, the four spending/budget permission states, dashboard resource delivery and 662,704 milliseconds of continued access. They did not exercise model answers or dashboard rendering and do not establish acceptance of the current profile.
 
-Independent source review exercised Free portfolio comparison limits, Gemini dashboard requests, separate authentication/plan/consent/permission outcomes, hostile merchant text and the legacy dashboard launcher. The review found an unqualified dynamic-registration claim in the connect skill; the corrected text limits the claim to Gemini. This review did not call a model or access an account.
+Current source and offline authentication tests cover exact callback/resource/scope/PKCE checks, authentication failures and replay/expiry handling. We do not claim new-profile live canceled-consent or occupied-callback-port acceptance. Antigravity authenticated access and Gemini Enterprise remain unverified or deferred. The Gemini profile provides no dashboard launcher or UI resource.
 
-The shared central skill registry check reports existing inventory, recommendation and source-authority drift outside this library. The fifteen canonical library files pass their individual skill-format checks. This change does not repair unrelated generated or installed skills.
+## Installation and release checks
 
-Live Free/paid reads, model conversations, idle-access and revocation checks remain pending. Historical paid-Gemini results above do not establish acceptance for the new profile.
+All fifteen canonical skills pass individual format checks. The repository validator accepts 31 exported files; nine packaging tests and eight companion contract tests pass. Two final builds must produce identical bytes. Local installation uses an extracted folder: CLI 0.65.0 does not accept a direct local ZIP path. The earlier fresh GitHub candidate-ref installation matched all 31 files and fifteen skills.
+
+The release attaches only `fillfolio-v0.1.1.zip`, with its SHA-256 in the release description. Final source commits, checksum and the fresh unqualified GitHub-release installation result belong in those release notes. Additional release assets would cause the tested CLI to select a source-tarball fallback. Older standalone downloads remain available. Gallery discovery remains pending until Google displays the extension.
+
+The central skill-registry check reports pre-existing drift outside this library. The fifteen canonical library files pass their own format checks; this release does not repair unrelated generated skills. The native Fillfolio plugin has a separate listing and release lifecycle.

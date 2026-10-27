@@ -2,11 +2,11 @@
 
 The extension combines the fifteen canonical skills in this repository with `GEMINI.md` context and the remote Fillfolio MCP configuration.
 
-**Preparation status, October 26, 2026:** the 0.1.1 package awaits completion of live Gemini acceptance. The install instructions below apply after acceptance and publication. Gallery discovery remains pending until Google displays the listing. This profile has nine financial read tools and no dashboard launcher or UI resource.
+**Tested October 27, 2026:** Free-account native checks and eight synthetic model cases pass with official Gemini CLI 0.65.0. Live paid-plan tests are deferred. See the [validation record](validation.md) for test conditions and evidence limits. Gallery discovery remains pending until Google displays the listing. This profile has nine financial read tools and no dashboard launcher or UI resource.
 
 ## Install and connect
 
-Use an official Gemini CLI version that passes the recorded acceptance checks. The release evidence will identify the tested version; package validation alone does not establish a minimum supported version.
+We tested official Gemini CLI **0.65.0**. These checks do not establish a minimum supported version.
 
 ```sh
 gemini extensions install https://github.com/fillfolio/portfolio-mcp-skills
@@ -32,9 +32,15 @@ The manifest uses these accepted values:
 
 Leave port 7777 free for the callback. Stop an interrupted authentication attempt before trying again. Use the extension's preregistered Gemini client and exact callback. Fillfolio does not dynamically register Gemini clients.
 
-The hosted service supports Free and paid accounts. Free includes one selected manual portfolio and three active assets, with the account-wide Free quota. Additional categories require eligible paid access and explicit consent. Provider coverage, stored history and account plan affect the available records. Spending and transactions require bank spending consent and this client's `spending:read` permission. Budgets require its separate `budgets:read` permission. Use Fillfolio Settings to revoke future access.
+The hosted service supports Free and paid accounts. Live paid-plan acceptance for this extension is deferred; see the [validation record](validation.md). Free includes one selected manual portfolio and three active assets, with the account-wide Free quota. Additional categories require eligible paid access and explicit consent. Provider coverage, stored history and account plan affect the available records. Spending and transactions require bank spending consent and this client's `spending:read` permission. Budgets require its separate `budgets:read` permission. Use Fillfolio Settings to revoke future access.
 
 Users supply their own Gemini account, model access and quota. Fillfolio does not pay for model usage. Google's quotas and account terms apply.
+
+## Gemini model access
+
+Gemini model credentials and Fillfolio OAuth are separate. Google ended Gemini CLI access through personal Google sign-in for individual, Google AI Pro and Google AI Ultra accounts on June 18, 2026. A successful browser sign-in does not establish CLI model eligibility. See [Google's deprecation notice](https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals).
+
+Configure a supported model authentication method before using the extension in a conversation. Gemini CLI supports an [API key from Google AI Studio](https://geminicli.com/docs/get-started/authentication/#use-gemini-api-key). Google's [Developer API free tier](https://ai.google.dev/gemini-api/docs/pricing) covers selected models with usage limits; your project's billing tier, model availability and quotas apply. Fillfolio supplies no model API key and funds no model usage. Keep model credentials out of chat and repositories.
 
 ## Data and host limits
 
